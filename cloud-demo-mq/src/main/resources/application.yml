@@ -1,10 +1,14 @@
 server:
-  port: 8070
+  port: 8090
 spring:
-  main:
-    allow-bean-definition-overriding: true
   application:
-    name: cloud-demo-user
+    name: cloud-demo-mq
+  rabbitmq:
+    host: 42.192.81.74
+    port: 5672
+    username: admin
+    password: 123456
+    virtualHost: '/'
 eureka:
   client:
     service-url:
@@ -12,4 +16,5 @@ eureka:
     instance:
       hostname: 127.0.0.1
       prefer-ip-address: true
-      instance-id: 127.0.0.1:8070
+      instance-id: 127.0.0.1:8060
+

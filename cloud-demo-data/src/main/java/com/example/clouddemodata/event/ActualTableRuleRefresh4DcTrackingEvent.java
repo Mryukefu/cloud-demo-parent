@@ -189,13 +189,13 @@ public class ActualTableRuleRefresh4DcTrackingEvent implements InitializingBean 
 		List<String> result = new ArrayList<>();
         try {
 			DatabaseMetaData metaData = connection.getMetaData();
-			String dbName = connection.getCatalog();
+		//	String dbName = connection.getCatalog();
 			for (DbDataNodes dbDataNodes : list) {
 				ResultSet tables = metaData.getTables(dbDataNodes.getDateSourceName(), null,
 						dbDataNodes.getLogicTableName() + "%", new String[] { "TABLE" });
 				while (tables.next()) {
 					String tableName = tables.getString("TABLE_NAME");
-					result.add(dbName+"."+tableName);
+					result.add("study"+"."+tableName);
 				}
 			}
 

@@ -1,4 +1,8 @@
 package com.example.clouddemomq.config;
+import com.example.clouddemocommon.utils.ValidationUtil;
+import com.example.clouddemomq.constant.ExQuBindEnum;
+import com.example.clouddemomq.constant.VirtualHostConstant;
+import com.rabbitmq.http.client.Client;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;

@@ -31,6 +31,8 @@ public enum RedisEnum {
         this.desc = desc;
     }
 
+
+
     /**
      * 获取带格式的枚举
      * 相当于String.format(formatStr,params)
@@ -39,6 +41,6 @@ public enum RedisEnum {
      * @return
      */
     public static String getByFormat(RedisEnum redisEnum, Object... params) {
-        return String.format(redisEnum.getKey(), params);
+        return String.format(redisEnum.key, params);
     }
 }

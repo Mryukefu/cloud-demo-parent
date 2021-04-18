@@ -214,7 +214,7 @@ public class DataSourceShardingConfig {
         bean.setTypeAliasesPackage("com.example.clouddemocommon.entry.po");
 
         bean.setMapperLocations(new PathMatchingResourcePatternResolver()
-                .getResources("classpath:mappers/*.xml"));
+                .getResources("classpath*:mappers/*.xml"));
 
         SqlSessionFactory sqlSessionFactory = bean.getObject();
         org.apache.ibatis.session.Configuration configuration = sqlSessionFactory.getConfiguration();

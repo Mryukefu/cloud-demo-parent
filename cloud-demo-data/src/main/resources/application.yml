@@ -1,6 +1,8 @@
 server:
   port: 8060
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: cloud-demo-data
 eureka:
@@ -28,7 +30,7 @@ data:
     ## url: jdbc:mysql://127.0.0.1:3306/dc_sdk?serverTimezone=GMT%2B8&useSSL=false
   ##  username: root
   ##  password: root
-#sqlÈÕÖ¾
+#sqlï¿½ï¿½Ö¾
 logging:
   level:
     com:
