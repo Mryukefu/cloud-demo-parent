@@ -1,4 +1,4 @@
-package com.example.clouddemocommon.entry.enumkey;
+package com.example.clouddemodata.entry.enumkey;
 
 import java.util.Arrays;
 import java.util.List;

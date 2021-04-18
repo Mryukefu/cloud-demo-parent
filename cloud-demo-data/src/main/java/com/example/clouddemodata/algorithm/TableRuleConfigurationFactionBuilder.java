@@ -1,6 +1,6 @@
 package com.example.clouddemodata.algorithm;
 
-import com.example.clouddemocommon.entry.enumkey.TableRuleConfigurationEnum;
+import com.example.clouddemodata.entry.enumkey.TableRuleConfigurationEnum;
 import com.example.clouddemocommon.utils.ValidationUtil;
 import io.shardingsphere.api.algorithm.sharding.complex.ComplexKeysShardingAlgorithm;
 import io.shardingsphere.api.algorithm.sharding.hint.HintShardingAlgorithm;

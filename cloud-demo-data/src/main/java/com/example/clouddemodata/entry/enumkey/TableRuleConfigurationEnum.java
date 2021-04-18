@@ -1,6 +1,4 @@
-package com.example.clouddemocommon.entry.enumkey;
-
-import lombok.Data;
+package com.example.clouddemodata.entry.enumkey;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.clouddemodata.po;
+package com.example.clouddemodata.entry.po;
 
 import lombok.Data;
 

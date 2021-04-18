@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import javax.sql.DataSource;
 
 import com.example.clouddemodata.algorithm.TableRuleConfigurationFactionBuilder1;
-import com.example.clouddemodata.po.DbDataNodes;
+import com.example.clouddemodata.entry.po.DbDataNodes;
 import io.shardingsphere.core.rule.DataNode;
 import io.shardingsphere.core.rule.ShardingRule;
 import io.shardingsphere.core.rule.TableRule;

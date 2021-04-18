@@ -1,4 +1,4 @@
-package com.example.clouddemodata.po;
+package com.example.clouddemodata.entry.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

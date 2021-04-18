@@ -1,6 +1,6 @@
 package com.example.clouddemouser.controller;
 
-import com.example.clouddemouser.feign.TestFeign;
+import com.example.clouddemocommon.feign.TestFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -2,11 +2,8 @@ package com.example.clouddemodata.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.clouddemodata.po.DcUser;
+import com.example.clouddemodata.entry.po.DcUser;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * @Description: 用户mapper
