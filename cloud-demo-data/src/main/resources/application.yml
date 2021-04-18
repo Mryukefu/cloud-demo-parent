@@ -11,3 +11,30 @@ eureka:
       hostname: 127.0.0.1
       prefer-ip-address: true
       instance-id: 127.0.0.1:8060
+
+
+#data source0
+data:
+  sharding:
+    ds[0]:
+      dcName: study
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://42.192.81.74:3306/study?serverTimezone=GMT%2B8&useSSL=false
+      username: root
+      password: root
+    ##ds[1]:
+    ## names: ds1
+    ## type: com.alibaba.druid.pool.DruidDataSource
+    ## url: jdbc:mysql://127.0.0.1:3306/dc_sdk?serverTimezone=GMT%2B8&useSSL=false
+  ##  username: root
+  ##  password: root
+#sql»’÷æ
+logging:
+  level:
+    com:
+      hyc:
+        dao: debug
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
