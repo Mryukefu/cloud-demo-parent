@@ -10,11 +10,11 @@ import java.util.stream.Collectors;
  */
 public enum TableRuleConfigurationEnum {
 
-    ADMIN_DB_TABLE_USER("ds0", "dc_user","user_id",
-            "user_id","${0..2}"),
+    ADMIN_DB_TABLE_USER("study", "dc_user","user_id",
+            "user_id","${0..8}"),
 
-    ADMIN_DB_TABLE_USER_BIND("ds0", "dc_sub_user","id",
-                           "user_id","${0..2}");
+    ADMIN_DB_TABLE_USER_BIND("study", "dc_user_account","id",
+                           "user_id","${0..8}");
 
 
     // 数据库名称yml 配置一样

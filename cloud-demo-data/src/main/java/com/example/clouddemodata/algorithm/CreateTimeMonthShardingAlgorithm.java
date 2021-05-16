@@ -1,7 +1,7 @@
-package com.project.common.algorithm;
+package com.example.clouddemodata.algorithm;
 
-import io.shardingsphere.api.algorithm.sharding.PreciseShardingValue;
-import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorithm;
+import org.apache.shardingsphere.api.sharding.standard.PreciseShardingAlgorithm;
+import org.apache.shardingsphere.api.sharding.standard.PreciseShardingValue;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ import java.util.Collection;
  * @since 2020/11/19
  *
  */
-public class CreateTimeMonthShardingAlgorithm implements PreciseShardingAlgorithm<Integer>{
+public class CreateTimeMonthShardingAlgorithm implements PreciseShardingAlgorithm<Integer> {
 
 	@Override
 	public String doSharding(Collection<String> availableTargetNames, PreciseShardingValue<Integer> shardingValue) {

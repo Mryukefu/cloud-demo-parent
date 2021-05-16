@@ -15,7 +15,8 @@ public class MqOperateRecordServiceImpl implements MqOperateRecordService {
     @Override
     public MqOperateRecordPO getMqOneRecode(Integer id) {
 
-        return mqOperateRecordMapper.selectById(id);
+       // return mqOperateRecordMapper.selectById(id);
+        return null;
     }
 
     @Override

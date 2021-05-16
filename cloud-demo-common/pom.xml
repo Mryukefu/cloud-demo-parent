@@ -20,6 +20,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
+
 		<!-- feign客户端依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -33,6 +34,12 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.wlwx</groupId>
+			<artifactId>spring-boot-starter-wlwx-sms</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 
 		<dependency>

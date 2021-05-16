@@ -8,7 +8,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @SpringBootApplication(scanBasePackages = {"com.example.clouddemodata",
 		"com.example.clouddemocommon",})
 @EnableEurekaClient
-@MapperScan("com.example.clouddemodata.mapper")
 public class CloudDemoDataApplication {
 
 	public static void main(String[] args) {

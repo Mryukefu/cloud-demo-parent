@@ -1,7 +1,7 @@
 package com.example.clouddemodata.algorithm;
 
-import io.shardingsphere.api.algorithm.sharding.PreciseShardingValue;
-import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorithm;
+import org.apache.shardingsphere.api.sharding.standard.PreciseShardingAlgorithm;
+import org.apache.shardingsphere.api.sharding.standard.PreciseShardingValue;
 
 import java.util.Collection;
 
@@ -11,11 +11,11 @@ import java.util.Collection;
  * @since 2020/11/19
  *
  */
-public class CreateFieldShardingAlgorithm implements PreciseShardingAlgorithm<Integer> {
+public class CreateFieldShardingAlgorithm implements PreciseShardingAlgorithm<Long> {
 
     @Override
-    public String doSharding(Collection<String> availableTargetNames, PreciseShardingValue<Integer> shardingValue) {
-        Integer value = shardingValue.getValue();
+    public String doSharding(Collection<String> availableTargetNames, PreciseShardingValue<Long> shardingValue) {
+        Long value = shardingValue.getValue();
         String logicTableName = shardingValue.getLogicTableName();
         return logicTableName+"_"+value%10;
     }

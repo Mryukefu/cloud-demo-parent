@@ -1,13 +1,11 @@
 package com.example.clouddemodata.entry.po;
-
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-
 import java.io.Serializable;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * <p>
@@ -27,8 +25,8 @@ public class DcUser implements Serializable {
     /**
      * 主键ID,用户唯一表示
      */
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Integer userId;
+    @Id
+    private Long userId;
 
     /**
      * 用户名，唯一
@@ -39,12 +37,6 @@ public class DcUser implements Serializable {
      * 用户名，唯一
      */
     private String userPhone;
-
-    /**
-     * ip，唯一
-     */
-    private String ip;
-
 
     /**
      * 设备号，唯一

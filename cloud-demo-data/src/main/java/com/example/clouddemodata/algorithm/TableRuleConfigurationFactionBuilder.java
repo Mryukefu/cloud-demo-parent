@@ -1,21 +1,19 @@
+/*
 package com.example.clouddemodata.algorithm;
 
 import com.example.clouddemodata.entry.enumkey.TableRuleConfigurationEnum;
 import com.example.clouddemocommon.utils.ValidationUtil;
-import io.shardingsphere.api.algorithm.sharding.complex.ComplexKeysShardingAlgorithm;
-import io.shardingsphere.api.algorithm.sharding.hint.HintShardingAlgorithm;
-import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorithm;
-import io.shardingsphere.api.algorithm.sharding.standard.RangeShardingAlgorithm;
-import io.shardingsphere.api.config.strategy.*;
 import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Constructor;
 
+*/
 /**
  * 类的功能描述
  *  构建表规则
  * @author 自己姓名
  * @date 2021/4/12 19:54
- */
+ *//*
+
 @Slf4j
 public class TableRuleConfigurationFactionBuilder {
 
@@ -86,3 +84,4 @@ public class TableRuleConfigurationFactionBuilder {
 
 
 }
+*/

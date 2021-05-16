@@ -42,6 +42,9 @@ public class DbDataNodes {
     private String authenticTableName;
 
 
+    /** 实际上得表 **/
+    private String keyGenerator;
+
 
 
 }

@@ -1,31 +1,30 @@
-/*
 package com.example.clouddemodata.algorithm;
-
 import com.example.clouddemocommon.utils.ValidationUtil;
-import io.shardingsphere.api.algorithm.sharding.complex.ComplexKeysShardingAlgorithm;
-import io.shardingsphere.api.algorithm.sharding.hint.HintShardingAlgorithm;
-import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorithm;
-import io.shardingsphere.api.algorithm.sharding.standard.RangeShardingAlgorithm;
-import io.shardingsphere.api.config.strategy.*;
-import io.shardingsphere.core.routing.strategy.ShardingStrategy;
-import io.shardingsphere.core.routing.strategy.complex.ComplexShardingStrategy;
-import io.shardingsphere.core.routing.strategy.hint.HintShardingStrategy;
-import io.shardingsphere.core.routing.strategy.inline.InlineShardingStrategy;
-import io.shardingsphere.core.routing.strategy.standard.StandardShardingStrategy;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shardingsphere.api.config.sharding.strategy.ComplexShardingStrategyConfiguration;
+import org.apache.shardingsphere.api.config.sharding.strategy.HintShardingStrategyConfiguration;
+import org.apache.shardingsphere.api.config.sharding.strategy.InlineShardingStrategyConfiguration;
+import org.apache.shardingsphere.api.config.sharding.strategy.StandardShardingStrategyConfiguration;
+import org.apache.shardingsphere.api.sharding.complex.ComplexKeysShardingAlgorithm;
+import org.apache.shardingsphere.api.sharding.hint.HintShardingAlgorithm;
+import org.apache.shardingsphere.api.sharding.standard.PreciseShardingAlgorithm;
+import org.apache.shardingsphere.api.sharding.standard.RangeShardingAlgorithm;
+import org.apache.shardingsphere.core.strategy.route.ShardingStrategy;
+import org.apache.shardingsphere.core.strategy.route.complex.ComplexShardingStrategy;
+import org.apache.shardingsphere.core.strategy.route.hint.HintShardingStrategy;
+import org.apache.shardingsphere.core.strategy.route.inline.InlineShardingStrategy;
+import org.apache.shardingsphere.core.strategy.route.standard.StandardShardingStrategy;
 
 import java.lang.reflect.Constructor;
 
-*/
 /**
  * 类的功能描述
  *  构建表规则
  * @author 自己姓名
  * @date 2021/4/12 19:54
- *//*
-
+ */
 @Slf4j
-public class TableRuleConfigurationFactionBuilder1 {
+public class TableRuleConfigurationFactionBuilder2 {
 
 
   public static ShardingStrategy buildShardingStrategyConfiguration(String classNameShardingStrategyConfigurationParam,
@@ -41,7 +40,7 @@ public class TableRuleConfigurationFactionBuilder1 {
           if (StandardShardingStrategy.class.isAssignableFrom(classNameShardingStrategy)){
 
               if (RangeShardingAlgorithm.class.isAssignableFrom(classNameShardingAlgorithm)
-                      &&PreciseShardingAlgorithm.class.isAssignableFrom(classNameShardingAlgorithm)){
+                      && PreciseShardingAlgorithm.class.isAssignableFrom(classNameShardingAlgorithm)){
                   Constructor constructor  = StandardShardingStrategyConfiguration.class.getConstructor(String.class,
                           PreciseShardingAlgorithm.class,RangeShardingAlgorithm.class);
 
@@ -72,7 +71,7 @@ public class TableRuleConfigurationFactionBuilder1 {
           if (ComplexShardingStrategy.class.isAssignableFrom(classNameShardingStrategy)){
               if (ComplexKeysShardingAlgorithm.class.isAssignableFrom(classNameShardingAlgorithm)){
                   Constructor   constructor  = ComplexShardingStrategyConfiguration.class.getConstructor(String.class,ComplexKeysShardingAlgorithm.class);
-                  ComplexShardingStrategyConfiguration  shardingStrategyConfiguration =  (ComplexShardingStrategyConfiguration)constructor.newInstance(shardingColumn,
+                  ComplexShardingStrategyConfiguration shardingStrategyConfiguration =  (ComplexShardingStrategyConfiguration)constructor.newInstance(shardingColumn,
                           classNameShardingAlgorithm.newInstance(), classNameShardingAlgorithm.newInstance());
                   return new ComplexShardingStrategy(shardingStrategyConfiguration);
               }
@@ -81,7 +80,7 @@ public class TableRuleConfigurationFactionBuilder1 {
           if (HintShardingStrategy.class.isAssignableFrom(classNameShardingStrategy)){
               if (HintShardingAlgorithm.class.isAssignableFrom(classNameShardingAlgorithm)){
                   Constructor constructor  = HintShardingStrategyConfiguration.class.getConstructor(String.class,HintShardingStrategyConfiguration.class);
-                  HintShardingStrategyConfiguration    shardingStrategyConfiguration =  (HintShardingStrategyConfiguration)constructor.newInstance(shardingColumn,
+                  HintShardingStrategyConfiguration shardingStrategyConfiguration =  (HintShardingStrategyConfiguration)constructor.newInstance(shardingColumn,
                           classNameShardingAlgorithm.newInstance(), classNameShardingAlgorithm.newInstance());
                   return new HintShardingStrategy(shardingStrategyConfiguration);
               }
@@ -103,4 +102,3 @@ public class TableRuleConfigurationFactionBuilder1 {
 
 
 }
-*/
