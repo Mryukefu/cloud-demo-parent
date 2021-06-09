@@ -13,6 +13,8 @@ import com.example.clouddemomq.constant.MqOperateRecordPO;
 import com.rabbitmq.client.Channel;
 //import com.rabbitmq.http.client.Client;
 //import com.rabbitmq.http.client.domain.BindingInfo;
+import com.rabbitmq.http.client.Client;
+import com.rabbitmq.http.client.domain.BindingInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.core.Message;
@@ -40,8 +42,8 @@ import static java.util.stream.Collectors.*;
  */
 @Slf4j
 public abstract class AbstractRabbitSupport implements IRabbitSupport<MqOperateRecordPO> {
-   // @Autowired
-   // protected Client client;
+   @Autowired
+    protected Client client;
     @Value("${spring.rabbitmq.virtual-host}")
     protected String virtualHost;
   //  @Autowired
@@ -107,10 +109,11 @@ public abstract class AbstractRabbitSupport implements IRabbitSupport<MqOperateR
      */
     @Override
     public Map<String, Set<String>> bindingsInfo(String virtualHost) {
-       /* List<BindingInfo> bindings = client.getBindings(virtualHost);
+      List<BindingInfo> bindings = client.getBindings(virtualHost);
         if (BINDING_INFO.isEmpty()) {
-            BINDING_INFO.putAll(bindings.stream().collect(groupingBy(BindingInfo::getSource, mapping(BindingInfo::getDestination, toSet()))));
-        }*/
+            BINDING_INFO.putAll(bindings
+                    .stream().collect(groupingBy(BindingInfo::getSource, mapping(BindingInfo::getDestination, toSet()))));
+        }
         return BINDING_INFO;
     }
 

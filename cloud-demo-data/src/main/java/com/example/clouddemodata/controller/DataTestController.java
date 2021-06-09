@@ -22,7 +22,7 @@ public class DataTestController {
 
     @GetMapping(value = "get/query")
     public DcUser getData(){
-      return  dcUserMapper.selectByPrimaryKey(1);
+      return  dcUserMapper.selectByPrimaryKey(new Long(1));
 
 
     }

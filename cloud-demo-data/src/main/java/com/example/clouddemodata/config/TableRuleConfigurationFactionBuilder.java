@@ -1,4 +1,4 @@
-package com.example.clouddemodata.algorithm;
+package com.example.clouddemodata.config;
 import com.example.clouddemocommon.utils.ValidationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.api.config.sharding.strategy.ComplexShardingStrategyConfiguration;
@@ -24,7 +24,7 @@ import java.lang.reflect.Constructor;
  * @date 2021/4/12 19:54
  */
 @Slf4j
-public class TableRuleConfigurationFactionBuilder2 {
+public class TableRuleConfigurationFactionBuilder {
 
 
   public static ShardingStrategy buildShardingStrategyConfiguration(String classNameShardingStrategyConfigurationParam,
