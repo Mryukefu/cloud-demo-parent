@@ -1,4 +1,4 @@
-package com.example.clouddemomq.constant;
+package com.example.clouddemocommon.entry.constant;
 
 
 

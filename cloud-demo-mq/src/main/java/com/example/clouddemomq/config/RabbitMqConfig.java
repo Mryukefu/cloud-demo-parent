@@ -1,7 +1,7 @@
 package com.example.clouddemomq.config;
 import com.example.clouddemocommon.utils.ValidationUtil;
-import com.example.clouddemomq.constant.ExQuBindEnum;
-import com.example.clouddemomq.constant.VirtualHostConstant;
+import com.example.clouddemocommon.entry.constant.ExQuBindEnum;
+import com.example.clouddemocommon.entry.constant.VirtualHostConstant;
 import com.rabbitmq.http.client.Client;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,6 @@ import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainer
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.index.PathBasedRedisIndexDefinition;
 
 import java.util.HashMap;
 import java.util.Map;

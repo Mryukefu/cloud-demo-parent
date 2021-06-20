@@ -33,8 +33,7 @@ import java.util.stream.Collectors;
  * @since 2021/4/14
  *
  */
-@Component
-@EnableScheduling
+//@Component
 @Order(9999)
 public class ActualTableRuleRefreshFromDbEvent implements InitializingBean {
 	
@@ -48,7 +47,7 @@ public class ActualTableRuleRefreshFromDbEvent implements InitializingBean {
 	 * @author ykf
 	 * @date 2021/4/16 17:16
 	 */
-	@Scheduled(cron = "0 0 1 * * ?")
+
 	public void actualDataNodesRefresh() throws NoSuchFieldException, IllegalAccessException, InstantiationException, ClassNotFoundException {
 		ShardingDataSource shardingDataSource = (ShardingDataSource) dataSource;
 		ShardingRule shardingRule = shardingDataSource.getRuntimeContext().getRule();

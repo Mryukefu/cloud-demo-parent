@@ -1,8 +1,7 @@
-package com.example.clouddemomq.constant;
+package com.example.clouddemocommon.entry.constant;
 
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.amqp.core.ExchangeTypes;
 
 
 /**
@@ -17,10 +16,8 @@ import org.springframework.amqp.core.ExchangeTypes;
 @ToString
 public enum ExQuBindEnum {
     /**测试mq*/
-    TEST_DIRECT_1(ExchangeTypes.FANOUT,
-            ExchangeNameConst.TEST_DIRECT_EXCHANGE_1,
-            QueueNameConstant.TEST_DIRECT_QUEUE_1,
-            RouteKeyConst.TEST_DIRECT_ROUTING_1, false);
+    TEST_FANOUT(ExchangeNameConst.EX_FANOUT_TEST,
+            QueueNameConstant.QUEUE_FANOUT_TEST, false);
 
 
     /** 默认交换机类型是直连。不需要路由效率比较高,也可以是其他类型*/
@@ -53,13 +50,17 @@ public enum ExQuBindEnum {
      * 构造方法 构造一个直接
      * @param exName 交换机名称，必填
      * @param mqName mq通道名称，必填
-     * @param keyName 路由名称，可不填
      * @param isDelayQueue ture 延迟队列
      * @return {@code }
      * @author ykf
      * @date 2021/1/30 12:16
      *
      */
+    ExQuBindEnum(String exName, String mqName, boolean isDelayQueue) {
+        this.exName = exName;
+        this.mqName = mqName;
+        this.isDelayQueue = isDelayQueue;
+    }
 
     ExQuBindEnum(String exName, String mqName, String keyName, boolean isDelayQueue) {
         this.exName = exName;

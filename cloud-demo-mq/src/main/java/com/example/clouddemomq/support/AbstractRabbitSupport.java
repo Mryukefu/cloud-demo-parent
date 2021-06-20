@@ -1,15 +1,12 @@
 package com.example.clouddemomq.support;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONPObject;
 import com.example.clouddemocommon.entry.vo.MqOperateRecordVO;
 import com.example.clouddemocommon.feign.MqFeign;
 import com.example.clouddemocommon.redis.ILock;
 import com.example.clouddemocommon.redis.RedisEnum;
 import com.example.clouddemocommon.utils.ObjectConvertUtil;
 import com.example.clouddemocommon.utils.ValidationUtil;
-import com.example.clouddemomq.constant.MqOperateRecordPO;
+import com.example.clouddemocommon.entry.constant.MqOperateRecordPO;
 import com.rabbitmq.client.Channel;
 //import com.rabbitmq.http.client.Client;
 //import com.rabbitmq.http.client.domain.BindingInfo;
@@ -35,7 +32,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.*;
 
 /**
- * @author 袁康云
+ * @author ykf
  * @title AbstractRabbitSupport
  * @projectName vip_core
  * @date 2019/6/14 20:07
@@ -65,7 +62,12 @@ public abstract class AbstractRabbitSupport implements IRabbitSupport<MqOperateR
      * @param coreHandle 核心操作，比如调用service层的统计方法
      */
     @Override
-    public void listenUp(String queueName, Message message, Channel channel, Integer recordId, String errorLog, Consumer<MqOperateRecordPO> coreHandle) {
+    public void listenUp(String queueName,
+                         Message message,
+                         Channel channel,
+                         Integer recordId,
+                         String errorLog,
+                         Consumer<MqOperateRecordPO> coreHandle) {
         MqOperateRecordPO operateRecord = instanceOperateRecordByIdWithLock(recordId);
 
         try {

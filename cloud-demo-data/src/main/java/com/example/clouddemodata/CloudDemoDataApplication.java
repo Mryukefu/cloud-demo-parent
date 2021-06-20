@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication(scanBasePackages = {"com.example.clouddemodata",
-		"com.example.clouddemocommon",})
+		"com.example.clouddemocommon"})
 @EnableEurekaClient
 public class CloudDemoDataApplication {
 

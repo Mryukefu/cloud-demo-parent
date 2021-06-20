@@ -20,7 +20,6 @@
 		<module>cloud-demo-eureka</module>
 		<module>cloud-demo-common</module>
 		<module>cloud-demo-data</module>
-		<module>cloud-demo-elasticsearch</module>
 		<module>cloud-demo-gateway</module>
 		<module>cloud-demo-mq</module>
 		<module>cloud-demo-user</module>

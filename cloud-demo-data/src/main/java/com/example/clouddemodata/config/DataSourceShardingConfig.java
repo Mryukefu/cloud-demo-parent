@@ -10,6 +10,8 @@ import com.example.clouddemodata.entry.enumkey.TableRuleConfigurationEnum;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.shardingsphere.api.config.masterslave.LoadBalanceStrategyConfiguration;
+import org.apache.shardingsphere.api.config.masterslave.MasterSlaveRuleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.KeyGeneratorConfiguration;
 import org.apache.shardingsphere.api.config.sharding.ShardingRuleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.TableRuleConfiguration;
@@ -29,10 +31,8 @@ import tk.mybatis.spring.annotation.MapperScan;
 import javax.sql.DataSource;
 import javax.validation.constraints.NotNull;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Configuration
@@ -92,6 +92,10 @@ public class DataSourceShardingConfig {
         dsMap.put("url", dsProp.getUrl());
         dsMap.put("username", dsProp.getUsername());
         dsMap.put("password", dsProp.getPassword());
+        List<DsProps.DsProp> slaveDs = dsProp.getSlaveDs();
+        if (slaveDs!=null){
+
+        }
 
         DruidDataSource ds = (DruidDataSource) DataSourceUtil.buildDataSource(dsMap);
         ds.setProxyFilters(Lists.newArrayList(statFilter()));
@@ -122,34 +126,64 @@ public class DataSourceShardingConfig {
 
         // 配置真实数据源
         Map<String, DataSource> dataSourceMap = new HashMap<>();
-        for (DsProps.DsProp dsProp : ds) {
+
+      List<DsProps.DsProp> allDs =  ds.stream().flatMap(t1->{
+            List<DsProps.DsProp> dcs = new ArrayList<>();
+            dcs.add(t1);
+            List<DsProps.DsProp> slaveDs = t1.getSlaveDs();
+            if (slaveDs!=null&&slaveDs.size()>0){
+                dcs.addAll(slaveDs);
+            }
+            return dcs.stream();
+        }).collect(Collectors.toList());
+        for (DsProps.DsProp dsProp : allDs) {
             log.info("[数据源加载]{}", dsProp.getDcName());
             dataSourceMap.put(dsProp.getDcName(), ds0(dsProp));
-
-            List<TableRuleConfigurationEnum> tableRuleConfigurationEnums = TableRuleConfigurationEnum
-                    .TableRuleConfigurationEnum(dsProp.getDcName());
-            if (tableRuleConfigurationEnums !=null&&tableRuleConfigurationEnums.size()>0){
-                tableRuleConfigurationEnums.forEach(
-                        dbNameEnums->{
-                            shardingRuleConfig.getTableRuleConfigs().add(ruleConfig(dbNameEnums));
-                        }
-                );
-            }
-            // 配置分组规则
-            List<String> tableGroups = BindingTableGroupsEnum.getTableByAdminType("ADMIN_DB");
-            if (tableGroups != null) {
-                for (String bindingTable : tableGroups) {
-                    shardingRuleConfig.getBindingTableGroups().add(bindingTable);
-                }
-            }
         }
 
+        /*List<TableRuleConfigurationEnum> tableRuleConfigurationEnums = TableRuleConfigurationEnum
+                .TableRuleConfigurationEnum(dsProp.getDcName());*/
+       List<TableRuleConfigurationEnum> tableRuleConfigurationEnums = Arrays.asList(TableRuleConfigurationEnum.values());
+        if (tableRuleConfigurationEnums !=null&&tableRuleConfigurationEnums.size()>0){
+            tableRuleConfigurationEnums.forEach(
+                    dbNameEnums->{
+                        shardingRuleConfig.getTableRuleConfigs().add(ruleConfig(dbNameEnums));
+                    }
+            );
+        }
+        //  配置主从
+        shardingRuleConfig.setMasterSlaveRuleConfigs(getMasterSlaveRuleConfigs(ds));
+        // 配置分组规则
+        List<String> tableGroups = BindingTableGroupsEnum.getTableByAdminType("ADMIN_DB");
+        if (tableGroups != null) {
+            for (String bindingTable : tableGroups) {
+                shardingRuleConfig.getBindingTableGroups().add(bindingTable);
+            }
+        }
         // 获取数据源对象
         Properties p = new Properties();
         p.setProperty("sql.show", Boolean.TRUE.toString());
-            DataSource dataSource = ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingRuleConfig,p);
+
+       DataSource dataSource = ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingRuleConfig,p);
             return dataSource;
         }
+
+        //  获取主从配置
+    private Collection<MasterSlaveRuleConfiguration>  getMasterSlaveRuleConfigs(List<DsProps.DsProp> dsProps) {
+        if (dsProps !=null){
+            return dsProps.stream().map(dsProp -> {
+                List<DsProps.DsProp> slaveDs = dsProp.getSlaveDs();
+                if (slaveDs != null) {
+                    List<String> slaveDataSourceNames = slaveDs.stream().map(DsProps.DsProp::getDcName).collect(Collectors.toList());
+                  //  String name = dsProp.getDcName()+"_"+slaveDataSourceNames.stream().collect(Collectors.joining());
+                   return new MasterSlaveRuleConfiguration("ms0", dsProp.getDcName(),slaveDataSourceNames
+                            , new LoadBalanceStrategyConfiguration("ROUND_ROBIN"));
+                }
+                return null;
+            }).filter(t1 -> t1 != null).collect(Collectors.toList());
+        }
+        return null;
+    }
 
 
     /**
@@ -168,7 +202,7 @@ public class DataSourceShardingConfig {
         ValidationUtil.assertNotNull(tableRuleConfigurationEnum.getGeneratorColumnName(),"没有指明主键");
         ValidationUtil.assertNotNull(tableRuleConfigurationEnum.getShardingColumn(),"没有配置分片键");
 
-        TableRuleConfiguration tableRuleConfig = new TableRuleConfiguration(tableRuleConfigurationEnum.getLogicTable(),tableRuleConfigurationEnum.getDbName()+
+        TableRuleConfiguration tableRuleConfig = new TableRuleConfiguration(tableRuleConfigurationEnum.getLogicTable(),"ms0"+
                 "."+tableRuleConfigurationEnum.getLogicTable()+tableRuleConfigurationEnum.getExpression());
         tableRuleConfig.setKeyGeneratorConfig(new KeyGeneratorConfiguration("SNOWFLAKE",tableRuleConfigurationEnum.getGeneratorColumnName()) );
 

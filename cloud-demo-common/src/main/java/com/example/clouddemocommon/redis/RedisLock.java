@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
@@ -13,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * redis分布式锁
  * @author ykf
  */
-@Service
+@Component
 public class RedisLock implements ILock {
 
     @Autowired

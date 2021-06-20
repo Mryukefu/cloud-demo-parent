@@ -1,6 +1,6 @@
 package com.example.clouddemomq.support;
 
-import com.example.clouddemomq.constant.MqOperateRecordPO;
+import com.example.clouddemocommon.entry.constant.MqOperateRecordPO;
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
 

@@ -20,6 +20,7 @@ public class DsProps {
         private String password;
         private String type;
         private String dcName;
+        private List<DsProp> slaveDs;
 
 
 

@@ -5,6 +5,8 @@ spring:
     allow-bean-definition-overriding: true
   application:
     name: cloud-demo-data
+  elasticsearch:
+    address: localhost:9200
 eureka:
   client:
     service-url:
@@ -15,15 +17,22 @@ eureka:
       instance-id: 127.0.0.1:8060
 
 
+
 #data source0
 data:
   sharding:
     ds[0]:
       dcName: study
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://127.0.0.1:3306/study?serverTimezone=GMT%2B8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/study?serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
       username: root
-      password: root
+      password: 123
+      slaveDs[0]:
+        dcName: studySlave
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://127.0.0.1:3307/study?serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+        username: root
+        password: 123
     ##ds[1]:
     ## names: ds1
     ## type: com.alibaba.druid.pool.DruidDataSource

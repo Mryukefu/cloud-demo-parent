@@ -1,4 +1,4 @@
-package com.example.clouddemomq.constant;
+package com.example.clouddemocommon.entry.constant;
 
 
 
@@ -14,11 +14,8 @@ package com.example.clouddemomq.constant;
 public class ExchangeNameConst {
 
 
-    public static final String TEST_DIRECT_EXCHANGE_1 = "TestDirectExchange1";
+    public static final String EX_FANOUT_TEST = "ex:fanout:test";
 
-    public static final String TEST_DIRECT_EXCHANGE = "TestDirectExchange";
-   /** 旧交换机*/
-    public static final String TASK_DIRECT_EXCHANGE = "TaskDirectExchange";
 
 }
 

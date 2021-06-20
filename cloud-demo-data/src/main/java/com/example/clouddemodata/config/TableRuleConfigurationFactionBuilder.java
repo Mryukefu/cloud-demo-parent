@@ -94,6 +94,7 @@ public class TableRuleConfigurationFactionBuilder {
 
           ValidationUtil.assertTrue(false,"不支持这个分表类型");
          } catch (Exception e) {
+          e.printStackTrace();
           log.error("构建分表策略异常",e);
           ValidationUtil.assertTrue(false,"构建分表策略异常");
       }
