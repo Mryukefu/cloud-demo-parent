@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public enum TableRuleConfigurationEnum {
 
     ADMIN_DB_TABLE_USER("study", "dc_user","user_id",
-            "user_id","${0..9}");
+            "user_id","_${0..1}");
 
     // 数据库名称yml 配置一样
     private String dbName;

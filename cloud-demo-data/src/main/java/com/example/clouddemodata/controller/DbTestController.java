@@ -33,14 +33,7 @@ public class DbTestController {
           return "hello-world";
     }
 
-    public static void main(String[] args) {
-        String sql = "select * from data where 1=1 and  find= 2";
-        final String dbType = JdbcConstants.MYSQL;
-        List<SQLStatement> sqlStatements = SQLUtils.parseStatements(sql, dbType);
-        for (SQLStatement sqlStatement : sqlStatements) {
-            System.out.println(sqlStatement);
-        }
-    }
+
 
 
 }

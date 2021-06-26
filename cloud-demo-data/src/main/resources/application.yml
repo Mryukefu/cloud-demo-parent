@@ -5,8 +5,23 @@ spring:
     allow-bean-definition-overriding: true
   application:
     name: cloud-demo-data
-  elasticsearch:
-    address: localhost:9200
+  ##elasticsearch:
+  ##address: localhost:9200
+  sharding:
+    datasource:
+      ds[0]:
+        msName: ms_dc_sdk
+        dcName: new_dc_sdk_master
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://127.0.0.1:3306/study?serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+        username: root
+        password: 123
+        slaveDs[0]:
+          dcName: new_dc_sdk_slave
+          type: com.alibaba.druid.pool.DruidDataSource
+          url: jdbc:mysql://127.0.0.1:3307/study?serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+          username: root
+          password: 123
 eureka:
   client:
     service-url:
@@ -15,31 +30,8 @@ eureka:
       hostname: 127.0.0.1
       prefer-ip-address: true
       instance-id: 127.0.0.1:8060
-
-
-
-#data source0
-data:
-  sharding:
-    ds[0]:
-      dcName: study
-      type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://127.0.0.1:3306/study?serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
-      username: root
-      password: 123
-      slaveDs[0]:
-        dcName: studySlave
-        type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://127.0.0.1:3307/study?serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
-        username: root
-        password: 123
-    ##ds[1]:
-    ## names: ds1
-    ## type: com.alibaba.druid.pool.DruidDataSource
-    ## url: jdbc:mysql://127.0.0.1:3306/dc_sdk?serverTimezone=GMT%2B8&useSSL=false
-  ##  username: root
-  ##  password: root
-#sql???
+shardingTable:
+  enable: true
 logging:
   level:
     com:
@@ -49,3 +41,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
     call-setters-on-nulls: true
+  mapperScanner:
+    basePackage: com.example.clouddemodata.mapper
+  mapper-locations: classpath*:mappers/*.xml
+  type-aliases-package: com.example.clouddemodata.entry.po

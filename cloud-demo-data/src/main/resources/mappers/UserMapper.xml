@@ -37,4 +37,7 @@
     </foreach>
 
   </select>
+    <select id="selectPage" resultType="com.example.clouddemodata.entry.po.DcUser">
+      select  * from dc_user
+    </select>
 </mapper>
